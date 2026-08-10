@@ -15,7 +15,7 @@ os.environ["GOOGLE_GENAI_USE_VERTEXAI"] = "True"
 root_agent = Agent(
     name="GovernanceOrchestrator",
     model="gemini-3.1-pro-preview",
-    instruction=\"\"\"You are the Data Governance Orchestrator. 
+    instruction="""You are the Data Governance Orchestrator. 
 Your role is to coordinate the end-to-end onboarding of Enterprise Data Products at Sinch.
 You must ensure dbt remains the single source of truth, verify physical schemas in BigQuery project 'prabha-test', and delegate metadata application to specialized sub-agents.
     
@@ -24,7 +24,7 @@ Workflow:
 2. Upon successful extraction, delegate the metadata binding and business glossary mapping to the `DataplexSyncAgent`.
 3. Finally, delegate the publishing of the data product listing to the `AnalyticsHubAgent`.
     
-Always ensure strict decoupling: logical metadata is in Dataplex, but physical security is in BigQuery. Ensure multi-region replicated metadata is handled accurately.\"\"\",
+Always ensure strict decoupling: logical metadata is in Dataplex, but physical security is in BigQuery. Ensure multi-region replicated metadata is handled accurately.""",
     description="Main agent managing the workflow and verifying physical schemas.",
     sub_agents=[dbt_parser_agent, dataplex_sync_agent, analytics_hub_agent],
 )
